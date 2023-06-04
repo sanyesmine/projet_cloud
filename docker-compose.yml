@@ -1,0 +1,33 @@
+version: '3'
+services:
+  backend:
+    image: yesmine1999/backend_repository:latest
+    ports:
+      - 3000:3000
+    depends_on:
+      - mysql-db
+  frontend:
+    image: yesmine1999/frontend_repository:latest
+    ports:
+      - 4200:4200
+    depends_on:
+      - backend
+  mysql-db:
+    image: yesmine1999/mysql_repository:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mall
+    volumes:
+      - ./mall.sql:/docker-entrypoint-initdb.d/mall.sql
+      - mysql-data:/var/lib/mysql
+  phpmyadmin:
+    image: yesmine1999/phpmyadmin_repository:latest
+    environment:
+      PMA_HOST: mysql-db
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 8080:80
+    depends_on:
+      - mysql-db
+volumes:
+  mysql-data:
