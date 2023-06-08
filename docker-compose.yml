@@ -14,13 +14,15 @@ services:
     depends_on:
       - backend
   mysql-db:
-    image: mysql:latest
+    image: yesmine1999/mysql_repository:latest
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: mall
     volumes:
       - ./mall.sql:/docker-entrypoint-initdb.d/mall.sql
       - mysql-data:/var/lib/mysql
+    ports:
+      - 3306:33060  # Change the port mapping here
   phpmyadmin:
     image: yesmine1999/phpmyadmin_repository:latest
     environment:
