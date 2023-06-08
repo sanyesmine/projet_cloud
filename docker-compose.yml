@@ -21,6 +21,8 @@ services:
     volumes:
       - ./mall.sql:/docker-entrypoint-initdb.d/mall.sql
       - mysql-data:/var/lib/mysql
+    ports:
+      - 33060:3306  # Change the port mapping here
   phpmyadmin:
     image: yesmine1999/phpmyadmin_repository:latest
     environment:
