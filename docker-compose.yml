@@ -7,6 +7,7 @@ services:
     depends_on:
       - mysql-db
     environment:
+      DATABASE_HOST=data: 'mysql-db'
       MYSQL_HOST: "mysql"
     restart: on-failure
   frontend:
