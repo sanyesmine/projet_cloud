@@ -6,6 +6,8 @@ services:
       - 3000:3000
     depends_on:
       - mysql-db
+    environment:
+      MYSQL_HOST: "mysql"
     restart: on-failure
   frontend:
     image: yesmine1999/frontend_repository:latest
